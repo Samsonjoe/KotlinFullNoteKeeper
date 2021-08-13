@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_notes">
+
+    <fragment
+        android:id="@+id/nav_notes"
+        android:name="com.kotlin.notekeeper.ui.notes.NoteFragment"
+        android:label="@string/nameApp"
+        tools:layout="@layout/fragment_note" />
+
+    <fragment
+        android:id="@+id/nav_courses"
+        android:name="com.kotlin.notekeeper.ui.course.CourseFragment"
+        android:label="@string/nameApp"
+        tools:layout="@layout/fragment_course" />
+
+    <fragment
+        android:id="@+id/nav_share"
+        android:name="com.kotlin.notekeeper.ui.share.ShareFragment"
+        android:label="@string/nameApp"
+        tools:layout="@layout/fragment_share" />
+
+    <fragment
+        android:id="@+id/nav_send"
+        android:name="com.kotlin.notekeeper.ui.send.SendFragment"
+        android:label="@string/nameApp"
+        tools:layout="@layout/fragment_send" />
+</navigation>
