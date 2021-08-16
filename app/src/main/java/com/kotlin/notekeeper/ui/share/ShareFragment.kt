@@ -31,7 +31,7 @@ class ShareFragment : Fragment() {
 
     getActivity()?.let {
       Snackbar.make(it.findViewById(android.R.id.content),
-              "Don't you think you've shared enough", Snackbar.LENGTH_LONG).show()
+              getString(R.string.nav_share_message), Snackbar.LENGTH_LONG).show()
     }
 
     return root

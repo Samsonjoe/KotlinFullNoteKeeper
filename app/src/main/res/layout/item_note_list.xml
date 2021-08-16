@@ -24,7 +24,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:text="TextView"
-                android:textAppearance="@style/BrandedText.CourseTitle"
+                android:textAppearance="@style/BrandedText.CourseName"
                 android:textColor="@color/pluralsight_orange"
                 android:textSize="@dimen/course_name_size"
                 android:textStyle="bold"

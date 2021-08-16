@@ -1,13 +1,13 @@
-package com.kotlin.notekeeper.ui.send
+package com.kotlin.notekeeper.ui.howMany
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class SendViewModel : ViewModel() {
+class HowManyViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is send Fragment"
+        value = "This is How Many Fragment"
     }
     val text: LiveData<String> = _text
 }
