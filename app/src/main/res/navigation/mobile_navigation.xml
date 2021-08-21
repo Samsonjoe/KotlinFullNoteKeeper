@@ -18,6 +18,12 @@
         tools:layout="@layout/fragment_course" />
 
     <fragment
+        android:id="@+id/nav_recently_viewed_notes"
+        android:name="com.kotlin.notekeeper.ui.recentlyViewedNotes.RecentlyViewedNotesFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_recently_viewed_notes" />
+
+    <fragment
         android:id="@+id/nav_share"
         android:name="com.kotlin.notekeeper.ui.share.ShareFragment"
         android:label="@string/app_name"

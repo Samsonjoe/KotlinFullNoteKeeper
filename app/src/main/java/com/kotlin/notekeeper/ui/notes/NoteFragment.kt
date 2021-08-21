@@ -7,12 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import com.kotlin.notekeeper.DataManager
-import com.kotlin.notekeeper.NoteRecyclerAdapter
-import com.kotlin.notekeeper.R
+import com.kotlin.notekeeper.*
 
 class NoteFragment : Fragment() {
 
@@ -25,6 +24,13 @@ class NoteFragment : Fragment() {
   private val noteRecyclerAdapter by lazy {
     context?.applicationContext?.let { NoteRecyclerAdapter(it, DataManager.notes) }
   }
+
+  private val viewModel by lazy {
+    ViewModelProviders.of(this)[ItemsActivityViewModel::class.java]
+  }
+
+
+
 
   override fun onCreateView(
     inflater: LayoutInflater,
@@ -43,6 +49,7 @@ class NoteFragment : Fragment() {
     root.findViewById<RecyclerView>(R.id.listItemsNotes).layoutManager = noteLayoutManager
     root.findViewById<RecyclerView>(R.id.listItemsNotes).adapter = noteRecyclerAdapter
 
+
     getActivity()?.let {
       Snackbar.make(it.findViewById(android.R.id.content),
               "Notes", Snackbar.LENGTH_LONG).show()
@@ -51,6 +58,9 @@ class NoteFragment : Fragment() {
     return root
   }
 
+  fun onNoteSelected(note: NoteInfo){
+    viewModel.addToRecentlyViewedNotes(note)
+  }
 
 
 }

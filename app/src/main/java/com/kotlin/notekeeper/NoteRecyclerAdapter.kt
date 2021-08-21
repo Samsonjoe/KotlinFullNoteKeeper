@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.kotlin.notekeeper.ui.notes.NoteFragment
 
 class NoteRecyclerAdapter(private val context: Context, private val notes: List<NoteInfo>) :
         RecyclerView.Adapter<NoteRecyclerAdapter.ViewHolder>() {
@@ -27,6 +28,9 @@ class NoteRecyclerAdapter(private val context: Context, private val notes: List<
     }
 
     override fun getItemCount() =notes.size
+    fun setOnSelectedListener(noteFragment: NoteFragment) {
+
+    }
 
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

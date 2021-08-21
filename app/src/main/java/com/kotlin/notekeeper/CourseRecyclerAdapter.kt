@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class CourseRecyclerAdapter(private val context: Context, private val courses: List<CourseInfo>) :
-        RecyclerView.Adapter<CourseRecyclerAdapter.ViewHolder>() {
+    RecyclerView.Adapter<CourseRecyclerAdapter.ViewHolder>() {
 
     private val layoutInflter = LayoutInflater.from(context)
 
