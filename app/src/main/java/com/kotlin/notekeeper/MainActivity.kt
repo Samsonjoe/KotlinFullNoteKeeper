@@ -37,9 +37,11 @@ class MainActivity : AppCompatActivity() {
             notePosition = DataManager.notes.lastIndex
         }
 
-        colorSelector.addListener {
+       /**CODE WORKS WITH THE content_main.xml COMPOUND COMPONENT (SLIDER)
+         colorSelector.addListener {
             noteColor = it
         }
+       **/
 
        /**CODE WORKS WITH THE content_main.xml COMPOUND COMPONENT
 
@@ -63,7 +65,11 @@ class MainActivity : AppCompatActivity() {
         colorSelector.selectedColorValue = (note.color)
 
          **/
+
+    /**CODE WORKS WITH THE content_main.xml COMPOUND COMPONENT (SLIDER)
         colorSelector.selectedColorValue = note.color
+
+    **/
         noteColor = note.color
 
         val coursePosition = DataManager.courses.values.indexOf(note.course)

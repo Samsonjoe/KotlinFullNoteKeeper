@@ -10,4 +10,13 @@
    <declare-styleable name="ColorSelector">
        <attr name="colors" />
    </declare-styleable>
+
+    // Custom values for ColorDialView class
+    <declare-styleable name="ColorDialView">
+        <attr name="colors"/>
+        <attr name="tickRadius" format="dimension"/>
+        <attr name="tickPadding" format="dimension"/>
+        <attr name="dialDiameter" format="dimension"/>
+        <attr name="scaleToFit" format="boolean"/>
+    </declare-styleable>
 </resources>
