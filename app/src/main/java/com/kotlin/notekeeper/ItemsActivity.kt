@@ -24,24 +24,6 @@ class ItemsActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
-    /** Test code start **/
-    val noteLayoutManager by lazy {
-        LinearLayoutManager(this)
-    }
-
-    val noteRecyclerAdapter by lazy {
-        //NoteRecyclerAdapter(this)
-    }
-
-    val courseLayoutManager by lazy {
-        GridLayoutManager(this, 2)
-    }
-
-    val courseRecyclerAdapter by lazy {
-        CourseRecyclerAdapter(this, DataManager.courses.values.toList())
-    }
-    /** Test code End **/
-
     private val viewModel by lazy {
         ViewModelProviders.of(this)[ItemsActivityViewModel::class.java]
     }
@@ -59,9 +41,6 @@ class ItemsActivity : AppCompatActivity() {
 
         handleDisplaySelection(viewModel.navDrawerDisplaySelection)
 
-        /**Test code Start **/
-        //displayNotes()
-        /**Test code End **/
 
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
@@ -75,18 +54,6 @@ class ItemsActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
     }
-
-
-
-    /** Test code start **/
-
-    /*fun displayNotes() {
-        listItemsNotes.layoutManager = noteLayoutManager
-        listItemsNotes.adapter = noteRecyclerAdapter
-        nav_view.menu.findItem(R.id.nav_notes).isChecked = true
-    }*/
-
-    /** Test code end **/
 
 
     fun handleDisplaySelection(itemId: Int){
