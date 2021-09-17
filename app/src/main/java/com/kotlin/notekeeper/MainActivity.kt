@@ -1,16 +1,18 @@
 package com.kotlin.notekeeper
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.Spinner
+import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
     private val tag = this ::class.simpleName
     private var notePosition = POSITION_NOT_SET
+
+    private var noteColor: Int = Color.TRANSPARENT
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +25,7 @@ class MainActivity : AppCompatActivity() {
                 DataManager.courses.values.toList())
         adapterCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
-        findViewById<Spinner>(R.id.spinnerCourses).adapter = adapterCourses
+        spinnerCourses.adapter = adapterCourses
 
         notePosition = savedInstanceState?.getInt(NOTE_POSITION, POSITION_NOT_SET) ?:
                 intent.getIntExtra(NOTE_POSITION, POSITION_NOT_SET)
@@ -35,6 +37,16 @@ class MainActivity : AppCompatActivity() {
             notePosition = DataManager.notes.lastIndex
         }
 
+        colorSelector.addListener {
+            noteColor = it
+        }
+
+       /**CODE WORKS WITH THE content_main.xml COMPOUND COMPONENT
+
+       colorSelector.addListener { color ->
+            noteColor = color
+        }
+       **/
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -44,11 +56,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun dispayNote() {
         val note =  DataManager.notes[notePosition]
-        findViewById<EditText>(R.id.textNoteTitle).setText(note.title)
-        findViewById<EditText>(R.id.textNoteText).setText(note.text)
+        textNoteTitle.setText(note.title)
+        textNoteText.setText(note.text)
+        /**CODE WORKS WITH THE content_main.xml COMPOUND COMPONENT
+
+        colorSelector.selectedColorValue = (note.color)
+
+         **/
+        colorSelector.selectedColorValue = note.color
+        noteColor = note.color
 
         val coursePosition = DataManager.courses.values.indexOf(note.course)
-        findViewById<Spinner>(R.id.spinnerCourses).setSelection(coursePosition)
+        spinnerCourses.setSelection(coursePosition)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -96,8 +115,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun saveNote() {
         val note = DataManager.notes[notePosition]
-        note.title = findViewById<EditText>(R.id.textNoteTitle).text.toString()
-        note.text = findViewById<EditText>(R.id.textNoteText).text.toString()
-        note.course = findViewById<Spinner>(R.id.spinnerCourses).selectedItem as CourseInfo
+        note.title = textNoteTitle.text.toString()
+        note.text = textNoteText.text.toString()
+        note.course = spinnerCourses.selectedItem as CourseInfo
+        note.color = this.noteColor
     }
 }

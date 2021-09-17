@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,14 +22,12 @@ class NoteFragment : Fragment() {
 
   private val noteRecyclerAdapter by lazy {
     context?.applicationContext?.let { NoteRecyclerAdapter(it, DataManager.notes) }
+
   }
 
   private val viewModel by lazy {
     ViewModelProviders.of(this)[ItemsActivityViewModel::class.java]
   }
-
-
-
 
   override fun onCreateView(
     inflater: LayoutInflater,
@@ -56,6 +53,11 @@ class NoteFragment : Fragment() {
     }
 
     return root
+  }
+
+  override fun onResume() {
+    super.onResume()
+    noteRecyclerAdapter?.notifyDataSetChanged()
   }
 
   fun onNoteSelected(note: NoteInfo){

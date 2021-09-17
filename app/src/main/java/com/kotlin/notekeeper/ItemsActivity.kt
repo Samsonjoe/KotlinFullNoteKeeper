@@ -14,19 +14,33 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_items.*
+import kotlinx.android.synthetic.main.fragment_note.*
 
 
 class ItemsActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
-   /* private val noteLayoutManager by lazy {
+    /** Test code start **/
+    val noteLayoutManager by lazy {
         LinearLayoutManager(this)
     }
 
-    private val noteRecyclerAdapter by lazy {
-            NoteRecyclerAdapter(this, DataManager.notes)
-    }*/
+    val noteRecyclerAdapter by lazy {
+        //NoteRecyclerAdapter(this)
+    }
+
+    val courseLayoutManager by lazy {
+        GridLayoutManager(this, 2)
+    }
+
+    val courseRecyclerAdapter by lazy {
+        CourseRecyclerAdapter(this, DataManager.courses.values.toList())
+    }
+    /** Test code End **/
 
     private val viewModel by lazy {
         ViewModelProviders.of(this)[ItemsActivityViewModel::class.java]
@@ -44,7 +58,10 @@ class ItemsActivity : AppCompatActivity() {
         }
 
         handleDisplaySelection(viewModel.navDrawerDisplaySelection)
-         //displayNotes()
+
+        /**Test code Start **/
+        //displayNotes()
+        /**Test code End **/
 
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
@@ -52,12 +69,24 @@ class ItemsActivity : AppCompatActivity() {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(setOf(
-            R.id.nav_notes, R.id.nav_courses, R.id.nav_recently_viewed_notes,R.id.nav_share,R.id.nav_send,R.id.nav_how_many), drawerLayout)
+            R.id.nav_notes, R.id.nav_courses, R.id.nav_recently_viewed_notes,
+                R.id.nav_share,R.id.nav_send,R.id.nav_how_many), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
     }
 
+
+
+    /** Test code start **/
+
+    /*fun displayNotes() {
+        listItemsNotes.layoutManager = noteLayoutManager
+        listItemsNotes.adapter = noteRecyclerAdapter
+        nav_view.menu.findItem(R.id.nav_notes).isChecked = true
+    }*/
+
+    /** Test code end **/
 
 
     fun handleDisplaySelection(itemId: Int){
@@ -79,6 +108,7 @@ class ItemsActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
       //  findViewById<RecyclerView>(R.id.listItemsCourses).adapter?.notifyDataSetChanged()
+
     }
 
     override fun onBackPressed() {
