@@ -36,6 +36,9 @@ class MainActivity : AppCompatActivity() {
             DataManager.notes.add(NoteInfo())
             notePosition = DataManager.notes.lastIndex
         }
+        colorSelector.addListener {
+            noteColor = it
+        }
 
        /**CODE WORKS WITH THE content_main.xml COMPOUND COMPONENT (SLIDER)
          colorSelector.addListener {
@@ -60,6 +63,7 @@ class MainActivity : AppCompatActivity() {
         val note =  DataManager.notes[notePosition]
         textNoteTitle.setText(note.title)
         textNoteText.setText(note.text)
+        colorSelector.selectedColorValue = note.color
         /**CODE WORKS WITH THE content_main.xml COMPOUND COMPONENT
 
         colorSelector.selectedColorValue = (note.color)

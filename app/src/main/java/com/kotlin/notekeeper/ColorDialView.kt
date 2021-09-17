@@ -103,7 +103,29 @@ class ColorDialView @JvmOverloads constructor(context: Context,
         refreshValues(true)
     }
 
+    var selectedColorValue: Int = android.R.color.transparent
+        set(value) {
+            val index = colors.indexOf(value)
+            selectedPosition = if (index == -1) 0 else index
+            snapAngle = (selectedPosition * angleBetweenColors).toFloat()
+            invalidate()
+        }
+
     private var listener: ArrayList<(Int) -> Unit> = arrayListOf()
+
+    fun addListener(function: (Int) -> Unit) {
+        listener.add(function)
+    }
+
+    private fun broadcastColorChange() {
+        listener.forEach {
+            if (selectedPosition > colors.size - 1) {
+                it(colors[0])
+            } else {
+                it(colors[selectedPosition])
+            }
+        }
+    }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
 
@@ -210,6 +232,7 @@ class ColorDialView @JvmOverloads constructor(context: Context,
 
             //Figure out snap angle
             if (getSnapAngle(dragStartX, dragStartY)) {
+                broadcastColorChange()
                 invalidate()
             }
         }
